@@ -35,6 +35,12 @@ internal class Program
                     break;
 
                 case CommandType.Play:
+                    if (engine.State.IsFinished)
+                    {
+                        Console.WriteLine(engine.State.FinishReason ?? "Game finished.");
+                        break;
+                    }
+
                     if (cmd.CardIndex is null)
                     {
                         Console.WriteLine("Missing card index.");
@@ -46,7 +52,11 @@ internal class Program
                     if (!ok)
                         Console.WriteLine(err);
                     else
+                    {
                         renderer.Render(engine.State);
+                        if (engine.State.IsFinished)
+                            Console.WriteLine("Game over. Type reshuffle <seed> to restart or quit.");
+                    }
                     break;
 
                 case CommandType.Quit:

@@ -71,6 +71,7 @@ public sealed class GameEngine
 
         // Apply move
         player.Hand.Cards.RemoveAt(move.CardIndex);
+        UpdateFinishedIfNeeded();
 
         if (State.CurrentTrick.Count == 0)
             State.LeadDenominator = card.Denominator;
@@ -90,6 +91,7 @@ public sealed class GameEngine
             State.CurrentTrick.Clear();
             State.LeadDenominator = null;
             State.CurrentPlayerIndex = winner;
+            UpdateFinishedIfNeeded();
         }
 
         return (true, null);
@@ -138,5 +140,14 @@ public sealed class GameEngine
             return a.Numerator > b.Numerator;
 
         return false;
+    }
+
+    private void UpdateFinishedIfNeeded()
+    {
+        if (State.Players.All(p => p.Hand.Cards.Count == 0))
+        {
+            State.IsFinished = true;
+            State.FinishReason = "All hands are empty.";
+        }
     }
 }

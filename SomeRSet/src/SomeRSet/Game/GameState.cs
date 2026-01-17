@@ -17,4 +17,7 @@ public sealed class GameState
     public List<(int PlayerIndex, Card Card)> CurrentTrick { get; } = new();
 
     public int? LastTrickWinner { get; set; }
+
+    public bool IsFinished { get; set; }
+    public string? FinishReason { get; set; }
 }
