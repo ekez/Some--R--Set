@@ -1,7 +1,6 @@
-namespace SomeRSet.Providers
+namespace SomeRSet.Providers;
+
+public interface IRandomProvider
 {
-    public interface IRandomProvider
-    {
-        int Next(int minValue, int maxValue);
-    }
+    int NextInt(int minInclusive, int maxExclusive);
 }

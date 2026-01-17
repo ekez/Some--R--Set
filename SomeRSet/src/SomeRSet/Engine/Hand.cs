@@ -1,9 +1,6 @@
-using System.Collections.Generic;
+namespace SomeRSet.Engine;
 
-namespace SomeRSet.Engine
+public sealed class Hand
 {
-    public class Hand
-    {
-        public List<Card> Cards { get; } = new();
-    }
+    public List<Card> Cards { get; } = new();
 }

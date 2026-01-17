@@ -1,10 +1,11 @@
-using System;
+namespace SomeRSet.Providers;
 
-namespace SomeRSet.Providers
+public sealed class RandomProvider : IRandomProvider
 {
-    public class RandomProvider : IRandomProvider
-    {
-        private readonly Random _rng = new();
-        public int Next(int minValue, int maxValue) => _rng.Next(minValue, maxValue);
-    }
+    private readonly Random random;
+
+    public RandomProvider(int seed) => random = new Random(seed);
+
+    public int NextInt(int minInclusive, int maxExclusive)
+        => random.Next(minInclusive, maxExclusive);
 }

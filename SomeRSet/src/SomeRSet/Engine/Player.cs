@@ -1,7 +1,9 @@
-namespace SomeRSet.Engine
+namespace SomeRSet.Engine;
+
+public sealed class Player
 {
-    public class Player
-    {
-        public string Name { get; set; } = string.Empty;
-    }
+    public string Name { get; }
+    public Hand Hand { get; } = new();
+
+    public Player(string name) => Name = name;
 }

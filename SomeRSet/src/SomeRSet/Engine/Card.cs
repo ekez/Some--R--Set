@@ -1,4 +1,13 @@
-namespace SomeRSet.Engine
+namespace SomeRSet.Engine;
+
+public sealed record Card(
+    int Id,
+    int Numerator,
+    int Denominator,
+    bool IsRedCounter,
+    int CounterPoints
+)
 {
-    public record Card(string Id);
+    public override string ToString()
+        => $"{Numerator}/{Denominator}" + (IsRedCounter ? $" (red {CounterPoints})" : "");
 }
